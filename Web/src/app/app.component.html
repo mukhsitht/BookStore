@@ -1,0 +1,27 @@
+<div class="mx-auto bg-grey-400">
+  <!--Screen-->
+  <div class="min-h-screen flex flex-col">
+    <!--Header Section Starts Here-->
+    <header class="bg-nav">
+      <app-header></app-header>
+    </header>
+    <!--/Header-->
+    <div class="flex flex-1">
+      <!--Sidebar-->
+      <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav md:block lg:block hidden">
+        <app-sidemenu></app-sidemenu>
+      </aside>
+      <!--/Sidebar-->
+      <!--Main-->
+      <main class="bg-white-300 flex-1 p-3 overflow-hidden">
+        <router-outlet></router-outlet>
+      </main>
+      <!--/Main-->
+    </div>
+    <!--Footer-->
+    <footer class="bg-grey-darkest text-white p-2">
+      <app-footer></app-footer>
+    </footer>
+    <!--/footer-->
+  </div>
+</div>

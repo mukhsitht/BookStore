@@ -1,0 +1,129 @@
+<div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+  <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+    <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+      Filter By
+    </div>
+    <div class="p-3">
+      <form class="w-full" novalidate #searchform="ngForm" id="frmSearch">
+        <div class="flex flex-wrap -mx-3">
+          <div class="w-full md:w-1/4 px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                   for="title">
+              Title
+            </label>
+            <input class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white-500"
+                   type="text"
+                   placeholder="Enter title"
+                   name="title"
+                   #title="ngModel"
+                   [(ngModel)]="searchBook.title">
+          </div>
+          <div class="w-full md:w-1/4 px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                   for="author">
+              Author
+            </label>
+            <input class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white-500"
+                   type="text"
+                   placeholder="Enter author"
+                   name="author"
+                   #author="ngModel"
+                   [(ngModel)]="searchBook.author">
+          </div>
+          <div class="w-full md:w-1/4 px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                   for="grid-last-name">
+              Price
+            </label>
+            <select class="appearance-none block w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 mb-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey"
+                    name="price"
+                    #price="ngModel"
+                    [(ngModel)]="searchBook.price">
+              <option value="">Select Price</option>
+              <option value="1-5">1 to 5 KWD</option>
+              <option value="6-20">6 to 20 KWD</option>
+              <option value="21-50">21 to 50 KWD</option>
+              <option value="50-">51+ KWD</option>
+            </select>
+          </div>
+          <div class="w-full md:w-1/4 px-3">
+            <label class="block uppercase tracking-wide text-gray-700 text-xs font-light mb-1"
+                   for="grid-last-name">
+              Publication Date
+            </label>
+            <div class="relative z-10">
+              <input class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white-500"
+                     placeholder="Select publication date"
+                     angular-mydatepicker
+                     (click)="dp.toggleCalendar()"
+                     name="date"
+                     #date="ngModel"
+                     [(ngModel)]="searchBook.date"
+                     [options]="myDpOptions"
+                     #dp="angular-mydatepicker" />
+            </div>
+          </div>
+          <div class="p-3">
+            <button type="submit" (click)="getBooks()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Search
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="flex flex-col">
+  <div class="p-3">
+    <a href="javascript:;" routerLink="/addbook" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+      Add Book
+    </a>
+  </div>
+  <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+      <div class="flex flex-wrap bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0"> Books</div>
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <div class="relative">
+            <select (change)="onSortingChange($event)" class="block appearance-none w-full bg-grey-200 border border-grey-200 text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey" id="grid-state">
+              <option value="">Sort By</option>
+              <option value="1">Title</option>
+              <option value="2">Author</option>
+              <option value="3">Price</option>
+              <option value="4">Publication Date</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="p-3">
+        <table class="table-responsive w-full rounded">
+          <thead>
+            <tr>
+              <th class="border w-1/4 px-4 py-2">Title</th>
+              <th class="border w-1/6 px-4 py-2">Author</th>
+              <th class="border w-1/6 px-4 py-2">Price</th>
+              <th class="border w-1/6 px-4 py-2">Publication Date</th>
+              <th class="border w-1/5 px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let book of books">
+              <td class="border px-4 py-2">{{book.title}}</td>
+              <td class="border px-4 py-2">{{book.author}}</td>
+              <td class="border px-4 py-2">{{book.formattedPrice}}</td>
+              <td class="border px-4 py-2">{{book.formattedPublicationDate}}</td>
+              <td class="border px-4 py-2">
+                <a href="javascript:;" routerLink="/editbook/{{book.id}}" class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="books.length<=0">
+              <td colspan="6" class="border px-4 py-2">No record found</td>              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
