@@ -31,7 +31,7 @@
    </ul>
    <h3>Database</h3>
    <ul>
-      <li><strong>Microsoft SQL Server 2022.</strong>To download database <a href="https://drive.google.com/file/d/1mz0QajPref_qtADflpWiyZf3sTay3YJB/view?usp=sharing" target="_blank">Click me</a></li>
+      <li><strong>Microsoft SQL Server 2022.</strong> To download database <a href="https://drive.google.com/file/d/1mz0QajPref_qtADflpWiyZf3sTay3YJB/view?usp=sharing" target="_blank">Click me</a></li>
    </ul>
    <h3>Screenshots</h3>
    <div class="row">
