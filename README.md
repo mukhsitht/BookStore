@@ -28,6 +28,7 @@
    <h3>Backend</h3>
    <ul>
       <li><strong>.NET 8</strong></li>
+      <li><strong>Entity Framework Core - Code First Approach</strong></li>
    </ul>
    <h3>Database</h3>
    <ul>
